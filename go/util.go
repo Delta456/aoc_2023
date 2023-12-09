@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"strconv"
 )
 
@@ -14,9 +15,20 @@ var numbers = map[string]string{"zero": "0", "one": "1", "two": "2", "three": "3
 func convertArrToIntArr(strArr []string) []int {
 	var intArr []int
 	for _, str := range strArr {
-		i, _ := strconv.Atoi(str)
-
+		i, err := strconv.Atoi(str)
+		if err != nil {
+			log.Fatal(err)
+		}
 		intArr = append(intArr, i)
 	}
 	return intArr
+}
+
+func slicesHasAllZeros(arr []int) bool {
+	for _, ele := range arr {
+		if ele != 0 {
+			return false
+		}
+	}
+	return true
 }
